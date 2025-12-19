@@ -29,6 +29,7 @@ public class ServicePartService {
     }
 
     public List<ServicePart> getPartsForEntry(Long entryId) {
-        return repo.findByServiceEntryId(entryId);
-    }
+    return repo.findByServiceEntry_Id(entryId);
+}
+
 }
