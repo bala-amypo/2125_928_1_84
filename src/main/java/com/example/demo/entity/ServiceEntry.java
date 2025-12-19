@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -14,15 +13,10 @@ public class ServiceEntry {
     @ManyToOne
     private Vehicle vehicle;
 
-    @ManyToOne
-    private Garage garage;
-
-    private String serviceType;
     private Date serviceDate;
     private Integer odometerReading;
-    private String description;
 
-    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-
-    // getters & setters
+    public Date getServiceDate() { return serviceDate; }
+    public Vehicle getVehicle() { return vehicle; }
+    public Integer getOdometerReading() { return odometerReading; }
 }

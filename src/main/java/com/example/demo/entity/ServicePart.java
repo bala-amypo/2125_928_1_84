@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 public class ServicePart {
@@ -10,13 +9,7 @@ public class ServicePart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private ServiceEntry serviceEntry;
-
-    private String partName;
-    private String partNumber;
-    private BigDecimal cost;
     private Integer quantity;
 
-    // getters & setters
+    public Integer getQuantity() { return quantity; }
 }

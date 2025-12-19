@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 public class Vehicle {
@@ -10,19 +9,12 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
     private String vin;
-
-    private String make;
-    private String model;
-    private Integer year;
-
-    @Column(nullable = false)
-    private Long ownerId;
-
     private Boolean active = true;
 
-    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+    public String getVin() { return vin; }
+    public void setVin(String vin) { this.vin = vin; }
 
-    // getters & setters
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
 }
