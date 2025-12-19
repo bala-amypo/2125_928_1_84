@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.ServicePart;
 import com.example.demo.repository.ServicePartRepository;
+import com.example.demo.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +15,14 @@ public class ServicePartService {
     public ServicePartService(ServicePartRepository repo) {
         this.repo = repo;
     }
-
+    public ServicePart createPart(ServicePart part) {
+        return repo.save(part);
+    }
+    public ServicePart getPartById(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("ServicePart not found"));
+    }
     public List<ServicePart> getPartsForEntry(Long entryId) {
         return repo.findByServiceEntry_Id(entryId);
-    }
-
-    public ServicePart create(ServicePart part) {
-        return repo.save(part);
     }
 }
