@@ -27,9 +27,10 @@ public class ServicePartService {
         return repo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Part not found"));
     }
-
-    public List<ServicePart> getPartsForEntry(Long entryId) {
+public List<ServicePart> getPartsForEntry(Long entryId) {
     return repo.findByServiceEntry_Id(entryId);
+}
+
 }
 
 }
