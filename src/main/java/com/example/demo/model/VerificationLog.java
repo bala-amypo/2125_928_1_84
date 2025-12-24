@@ -1,9 +1,10 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "verification_logs")
 public class VerificationLog {
 
     @Id
@@ -13,9 +14,7 @@ public class VerificationLog {
     @ManyToOne
     private ServiceEntry serviceEntry;
 
-    private Timestamp verifiedAt = new Timestamp(System.currentTimeMillis());
-    private Boolean verifiedBySystem = true;
-    private String notes;
+    private LocalDateTime verifiedAt;
 
-    // getters & setters
+    public VerificationLog() {}
 }
