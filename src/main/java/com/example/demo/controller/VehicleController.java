@@ -2,13 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Vehicle;
 import com.example.demo.service.VehicleService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vehicles")
-@Tag(name = "Vehicles")
+@RequestMapping("/vehicles")
 public class VehicleController {
 
     private final VehicleService service;
@@ -28,11 +27,11 @@ public class VehicleController {
     }
 
     @GetMapping("/owner/{ownerId}")
-    public List<Vehicle> byOwner(@PathVariable Long ownerId) {
-        return service.getByOwner(ownerId);
+    public List<Vehicle> getByOwner(@PathVariable Long ownerId) {
+        return service.getVehiclesByOwner(ownerId);
     }
 
-    @PutMapping("/{id}/deactivate")
+    @PostMapping("/{id}/deactivate")
     public void deactivate(@PathVariable Long id) {
         service.deactivateVehicle(id);
     }
