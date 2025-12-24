@@ -1,39 +1,15 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Vehicle;
-import com.example.demo.repository.VehicleRepository;
-import com.example.demo.exception.EntityNotFoundException;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
-@Service
-public class VehicleService {
+public interface VehicleService {
 
-    private final VehicleRepository repo;
+    Vehicle createVehicle(Vehicle vehicle);
 
-    public VehicleService(VehicleRepository repo) {
-        this.repo = repo;
-    }
+    Vehicle getVehicleById(Long id);
 
-    public Vehicle createVehicle(Vehicle vehicle) {
-        if (repo.findByVin(vehicle.getVin()).isPresent()) {
-            throw new IllegalArgumentException("VIN");
-        }
-        return repo.save(vehicle);
-    }
+    List<Vehicle> getVehiclesByOwner(Long ownerId);
 
-    public Vehicle getVehicleById(Long id) {
-        return repo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
-    }
-
-    public List<Vehicle> getByOwner(Long ownerId) {
-        return repo.findByOwnerId(ownerId);
-    }
-
-    public void deactivateVehicle(Long id) {
-        Vehicle v = getVehicleById(id);
-        v.setActive(false);
-        repo.save(v);
-    }
+    void deactivateVehicle(Long id);
 }
