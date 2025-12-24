@@ -1,7 +1,5 @@
-package com.example.demo.exception;
+import java.time.LocalDate;
 
-public class EntityNotFoundException extends RuntimeException {
-    public EntityNotFoundException(String message) {
-        super(message);
-    }
+if (entry.getServiceDate().isAfter(LocalDate.now())) {
+    throw new IllegalArgumentException("future");
 }
