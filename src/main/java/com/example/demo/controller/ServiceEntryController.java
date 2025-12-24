@@ -2,13 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.model.ServiceEntry;
 import com.example.demo.service.ServiceEntryService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/service-entries")
-@Tag(name = "Service Entries")
+@RequestMapping("/service-entries")
 public class ServiceEntryController {
 
     private final ServiceEntryService service;
@@ -19,11 +18,11 @@ public class ServiceEntryController {
 
     @PostMapping
     public ServiceEntry create(@RequestBody ServiceEntry entry) {
-        return service.create(entry);
+        return service.createServiceEntry(entry);
     }
 
     @GetMapping("/vehicle/{vehicleId}")
-    public List<ServiceEntry> byVehicle(@PathVariable Long vehicleId) {
-        return service.getByVehicle(vehicleId);
+    public List<ServiceEntry> getByVehicle(@PathVariable Long vehicleId) {
+        return service.getEntriesForVehicle(vehicleId);
     }
 }
