@@ -14,7 +14,12 @@ public class VerificationLog {
     @ManyToOne
     private ServiceEntry serviceEntry;
 
-    private LocalDateTime verifiedAt;
+    private LocalDateTime verifiedAt = LocalDateTime.now();
 
     public VerificationLog() {}
+
+    public Long getId() { return id; }
+    public ServiceEntry getServiceEntry() { return serviceEntry; }
+    public void setServiceEntry(ServiceEntry serviceEntry) { this.serviceEntry = serviceEntry; }
+    public LocalDateTime getVerifiedAt() { return verifiedAt; }
 }

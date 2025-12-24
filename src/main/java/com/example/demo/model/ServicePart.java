@@ -17,4 +17,12 @@ public class ServicePart {
     private Integer quantity;
 
     public ServicePart() {}
+
+    public Long getId() { return id; }
+    public ServiceEntry getServiceEntry() { return serviceEntry; }
+    public void setServiceEntry(ServiceEntry serviceEntry) { this.serviceEntry = serviceEntry; }
+    public String getPartName() { return partName; }
+    public void setPartName(String partName) { this.partName = partName; }
+    public Integer getQuantity() { return quantity; }
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
 }
