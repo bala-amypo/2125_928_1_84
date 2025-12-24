@@ -14,12 +14,28 @@ public class VerificationLog {
     @ManyToOne
     private ServiceEntry serviceEntry;
 
-    private LocalDateTime verifiedAt = LocalDateTime.now();
+    private LocalDateTime verifiedAt;
 
     public VerificationLog() {}
 
-    public Long getId() { return id; }
-    public ServiceEntry getServiceEntry() { return serviceEntry; }
-    public void setServiceEntry(ServiceEntry serviceEntry) { this.serviceEntry = serviceEntry; }
-    public LocalDateTime getVerifiedAt() { return verifiedAt; }
+    public Long getId() {
+        return id;
+    }
+
+    public ServiceEntry getServiceEntry() {
+        return serviceEntry;
+    }
+
+    public void setServiceEntry(ServiceEntry serviceEntry) {
+        this.serviceEntry = serviceEntry;
+    }
+
+    public LocalDateTime getVerifiedAt() {
+        return verifiedAt;
+    }
+
+    // 🔴 REQUIRED FIX
+    public void setVerifiedAt(LocalDateTime verifiedAt) {
+        this.verifiedAt = verifiedAt;
+    }
 }
