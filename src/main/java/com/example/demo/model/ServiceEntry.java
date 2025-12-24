@@ -20,7 +20,6 @@ public class ServiceEntry {
     private Garage garage;
 
     private String serviceType;
-    private LocalDate serviceDate;
     private Integer odometerReading;
 
     public ServiceEntry() {}
