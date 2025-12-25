@@ -7,6 +7,8 @@ import com.example.demo.repository.ServiceEntryRepository;
 import com.example.demo.repository.VerificationLogRepository;
 import com.example.demo.service.VerificationLogService;
 import java.util.List;
+import org.springframework.stereotype.Service;
+
 
 @Service
 public class VerificationLogServiceImpl implements VerificationLogService {

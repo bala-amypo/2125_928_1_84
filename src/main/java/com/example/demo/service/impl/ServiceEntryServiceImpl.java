@@ -10,6 +10,8 @@ import com.example.demo.repository.VehicleRepository;
 import com.example.demo.service.ServiceEntryService;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.stereotype.Service;
+
 
 @Service
 public class ServiceEntryServiceImpl implements ServiceEntryService {
