@@ -8,6 +8,7 @@ import com.example.demo.repository.ServicePartRepository;
 import com.example.demo.service.ServicePartService;
 import java.util.List;
 
+@Service
 public class ServicePartServiceImpl implements ServicePartService {
 
     private final ServicePartRepository servicePartRepository;

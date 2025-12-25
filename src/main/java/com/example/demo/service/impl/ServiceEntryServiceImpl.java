@@ -11,6 +11,7 @@ import com.example.demo.service.ServiceEntryService;
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class ServiceEntryServiceImpl implements ServiceEntryService {
 
     private final ServiceEntryRepository serviceEntryRepository;
