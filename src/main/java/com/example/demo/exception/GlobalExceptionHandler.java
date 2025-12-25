@@ -31,7 +31,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    // ✅ JWT / Authentication errors
     @ExceptionHandler(JwtException.class)
     public ResponseEntity<Map<String, Object>> handleJwt(JwtException ex) {
         Map<String, Object> body = new HashMap<>();
@@ -41,7 +40,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
     }
 
-    // ❗ LAST RESORT (keep this last)
+    
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneral(Exception ex) {
         Map<String, Object> body = new HashMap<>();
