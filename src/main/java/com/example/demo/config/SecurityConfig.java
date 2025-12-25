@@ -16,25 +16,33 @@ public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
 
+    // Constructor Injection (MANDATORY)
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    // Password Encoder Bean
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // Security Filter Chain (Spring Boot 3.x style)
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         JwtAuthenticationFilter jwtFilter =
                 new JwtAuthenticationFilter(jwtTokenProvider);
 
         http
+            // Disable CSRF for REST APIs
             .csrf(csrf -> csrf.disable())
+
+            // Stateless session (JWT)
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+            // Authorization rules
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers(
                             "/auth/**",
@@ -45,6 +53,8 @@ public class SecurityConfig {
                     .requestMatchers("/api/**").authenticated()
                     .anyRequest().permitAll()
             )
+
+            // JWT filter before UsernamePasswordAuthenticationFilter
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
