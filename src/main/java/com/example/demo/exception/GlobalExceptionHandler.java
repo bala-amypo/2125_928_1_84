@@ -43,8 +43,12 @@ public class GlobalExceptionHandler {
     
    @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneral(Exception ex) {
-    body.put("error", "Internal Server Error");
+    ex.printStackTrace();
+
+    Map<String, Object> body = new HashMap<>();
+    body.put("timestamp", LocalDateTime.now());
+    body.put("error", ex.getMessage()); // show real message
+
     return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 }
