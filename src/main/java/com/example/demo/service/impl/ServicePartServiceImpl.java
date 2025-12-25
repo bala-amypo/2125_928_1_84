@@ -6,7 +6,6 @@ import com.example.demo.model.ServicePart;
 import com.example.demo.repository.ServiceEntryRepository;
 import com.example.demo.repository.ServicePartRepository;
 import com.example.demo.service.ServicePartService;
-
 import java.util.List;
 
 public class ServicePartServiceImpl implements ServicePartService {
