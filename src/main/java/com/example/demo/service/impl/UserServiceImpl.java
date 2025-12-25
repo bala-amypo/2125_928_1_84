@@ -36,10 +36,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(String email, String password) {
 
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new IllegalArgumentException("Invalid credentials");
-        }
+    User user = userRepository.findByEmail(email)
+            .orElseThrow(() ->new EntityNotFoundException("User not found"));
 
-        return user;
+    if (!passwordEncoder.matches(password, user.getPassword())) {
+        throw new IllegalArgumentException("Invalid credentials");
+    }
+
+    return user;
     }
 }
