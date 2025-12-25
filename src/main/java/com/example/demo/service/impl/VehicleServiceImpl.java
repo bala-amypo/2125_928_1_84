@@ -4,7 +4,7 @@ import com.example.demo.exception.EntityNotFoundException;
 import com.example.demo.model.Vehicle;
 import com.example.demo.repository.VehicleRepository;
 import com.example.demo.service.VehicleService;
-
+@Service
 import java.util.List;
 
 public class VehicleServiceImpl implements VehicleService {
