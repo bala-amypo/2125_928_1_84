@@ -1,7 +1,11 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.VerificationLog;
+import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VerificationLogRepository extends JpaRepository<VerificationLog, Long> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByEmail(String email);
 }
