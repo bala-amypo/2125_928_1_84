@@ -4,9 +4,11 @@ import com.example.demo.exception.EntityNotFoundException;
 import com.example.demo.model.Vehicle;
 import com.example.demo.repository.VehicleRepository;
 import com.example.demo.service.VehicleService;
-@Service
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
@@ -26,15 +28,13 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Vehicle getVehicleById(Long id) {
         return vehicleRepository.findById(id)
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Vehicle not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
     }
 
     @Override
     public Vehicle getVehicleByVin(String vin) {
         return vehicleRepository.findByVin(vin)
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Vehicle not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
     }
 
     @Override
