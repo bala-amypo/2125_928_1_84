@@ -2,36 +2,44 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Vehicle;
 import com.example.demo.service.VehicleService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/vehicles")
+@RequestMapping("/api/vehicles")
+@Tag(name = "Vehicles")
 public class VehicleController {
 
-    private final VehicleService service;
+    private final VehicleService vehicleService;
 
-    public VehicleController(VehicleService service) {
-        this.service = service;
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
     }
 
     @PostMapping
     public Vehicle create(@RequestBody Vehicle vehicle) {
-        return service.createVehicle(vehicle);
+        return vehicleService.createVehicle(vehicle);
     }
 
     @GetMapping("/{id}")
-    public Vehicle get(@PathVariable Long id) {
-        return service.getVehicleById(id);
+    public Vehicle getById(@PathVariable Long id) {
+        return vehicleService.getVehicleById(id);
+    }
+
+    @GetMapping("/vin/{vin}")
+    public Vehicle getByVin(@PathVariable String vin) {
+        return vehicleService.getVehicleByVin(vin);
     }
 
     @GetMapping("/owner/{ownerId}")
-    public List<Vehicle> byOwner(@PathVariable Long ownerId) {
-        return service.getVehiclesByOwner(ownerId);
+    public List<Vehicle> getByOwner(@PathVariable Long ownerId) {
+        return vehicleService.getVehiclesByOwner(ownerId);
     }
 
-    @PostMapping("/{id}/deactivate")
+    @PutMapping("/{id}/deactivate")
     public void deactivate(@PathVariable Long id) {
-        service.deactivateVehicle(id);
+        vehicleService.deactivateVehicle(id);
     }
 }
