@@ -11,31 +11,29 @@ public class VerificationLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private ServiceEntry serviceEntry;
 
-    private LocalDateTime verifiedAt;
+    private LocalDateTime verifiedAt = LocalDateTime.now();
 
-    public VerificationLog() {}
+    private Boolean verifiedBySystem = true;
 
-    public Long getId() {
-        return id;
+    private String notes;
+
+    public VerificationLog() {
     }
 
-    public ServiceEntry getServiceEntry() {
-        return serviceEntry;
-    }
-
-    public void setServiceEntry(ServiceEntry serviceEntry) {
+    public VerificationLog(ServiceEntry serviceEntry, String notes) {
         this.serviceEntry = serviceEntry;
+        this.notes = notes;
     }
 
-    public LocalDateTime getVerifiedAt() {
-        return verifiedAt;
-    }
+    public Long getId() { return id; }
+    public ServiceEntry getServiceEntry() { return serviceEntry; }
+    public LocalDateTime getVerifiedAt() { return verifiedAt; }
+    public Boolean getVerifiedBySystem() { return verifiedBySystem; }
+    public String getNotes() { return notes; }
 
-    // 🔴 REQUIRED FIX
-    public void setVerifiedAt(LocalDateTime verifiedAt) {
-        this.verifiedAt = verifiedAt;
-    }
+    public void setServiceEntry(ServiceEntry serviceEntry) { this.serviceEntry = serviceEntry; }
+    public void setNotes(String notes) { this.notes = notes; }
 }
