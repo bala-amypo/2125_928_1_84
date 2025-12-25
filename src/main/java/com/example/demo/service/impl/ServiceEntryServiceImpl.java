@@ -8,7 +8,6 @@ import com.example.demo.repository.GarageRepository;
 import com.example.demo.repository.ServiceEntryRepository;
 import com.example.demo.repository.VehicleRepository;
 import com.example.demo.service.ServiceEntryService;
-
 import java.time.LocalDate;
 import java.util.List;
 

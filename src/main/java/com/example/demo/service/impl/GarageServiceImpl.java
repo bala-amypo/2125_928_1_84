@@ -4,7 +4,6 @@ import com.example.demo.exception.EntityNotFoundException;
 import com.example.demo.model.Garage;
 import com.example.demo.repository.GarageRepository;
 import com.example.demo.service.GarageService;
-
 import java.util.List;
 
 public class GarageServiceImpl implements GarageService {
