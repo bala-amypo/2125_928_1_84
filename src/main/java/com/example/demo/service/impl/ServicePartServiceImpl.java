@@ -8,6 +8,8 @@ import com.example.demo.service.ServicePartService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServicePartServiceImpl implements ServicePartService {
 
@@ -32,5 +34,16 @@ public class ServicePartServiceImpl implements ServicePartService {
 
         part.setServiceEntry(entry);
         return servicePartRepository.save(part);
+    }
+
+    @Override
+    public ServicePart getById(Long id) {
+        return servicePartRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("ServicePart not found"));
+    }
+
+    @Override
+    public List<ServicePart> getByEntry(Long entryId) {
+        return servicePartRepository.findByServiceEntryId(entryId);
     }
 }

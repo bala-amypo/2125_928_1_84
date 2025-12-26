@@ -19,4 +19,6 @@ public interface ServiceEntryRepository extends JpaRepository<ServiceEntry, Long
 
     @Query("select s from ServiceEntry s where s.vehicle.id = :vehicleId and s.serviceDate between :from and :to")
     List<ServiceEntry> findByVehicleAndDateRange(Long vehicleId, LocalDate from, LocalDate to);
+    List<ServiceEntry> findByGarageId(Long garageId);
+
 }
