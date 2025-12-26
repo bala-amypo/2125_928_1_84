@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "service_parts")
 public class ServicePart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @ManyToOne
@@ -17,8 +16,4 @@ public class ServicePart {
     private String partName;
     private Integer quantity;
     private BigDecimal cost;
-
-    public ServicePart() {}
-
-    // getters & setters
 }

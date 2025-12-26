@@ -2,15 +2,12 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "service_entries")
 public class ServiceEntry {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @ManyToOne
@@ -22,14 +19,8 @@ public class ServiceEntry {
     private String serviceType;
     private LocalDate serviceDate;
     private Integer odometerReading;
-    private String description;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @OneToMany(mappedBy = "serviceEntry")
-    private List<ServicePart> parts;
-
-    public ServiceEntry() {}
-
-    // getters & setters
+    public Long getId() { return id; }
+    public Vehicle getVehicle() { return vehicle; }
+    public Integer getOdometerReading() { return odometerReading; }
 }

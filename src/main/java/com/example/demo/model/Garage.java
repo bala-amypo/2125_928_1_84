@@ -1,30 +1,22 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "garages", uniqueConstraints = @UniqueConstraint(columnNames = "garageName"))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "garageName"))
 public class Garage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     private String garageName;
     private String address;
     private Boolean active = true;
 
-    @OneToMany(mappedBy = "garage")
-    private List<ServiceEntry> serviceEntries;
+    public Long getId() { return id; }
+    public String getGarageName() { return garageName; }
+    public Boolean getActive() { return active; }
 
-    public Garage() {}
-
-    public Garage(String garageName, String address, Boolean active) {
-        this.garageName = garageName;
-        this.address = address;
-        this.active = active;
-    }
-
-    // getters & setters
+    public void setActive(Boolean active) { this.active = active; }
 }
