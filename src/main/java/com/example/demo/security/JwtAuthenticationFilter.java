@@ -21,6 +21,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.tokenProvider = tokenProvider;
     }
 
+    // 🔥 STEP 1 FIX: SKIP LOGIN & REGISTER
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
@@ -48,18 +49,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String email = claims.getSubject();
                 String role = claims.get("role", String.class);
 
-                UsernamePasswordAuthenticationToken auth =
+                UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
                                 email,
                                 null,
                                 List.of(() -> "ROLE_" + role)
                         );
 
-                auth.setDetails(
+                authentication.setDetails(
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );
 
-                SecurityContextHolder.getContext().setAuthentication(auth);
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authentication);
             }
         }
 
