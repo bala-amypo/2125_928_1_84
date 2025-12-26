@@ -9,6 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class VerificationLogServiceImpl implements VerificationLogService {
@@ -32,5 +33,16 @@ public class VerificationLogServiceImpl implements VerificationLogService {
         log.setVerifiedAt(LocalDateTime.now());
 
         return verificationLogRepository.save(log);
+    }
+
+    @Override
+    public VerificationLog getById(Long id) {
+        return verificationLogRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("VerificationLog not found"));
+    }
+
+    @Override
+    public List<VerificationLog> getByEntry(Long entryId) {
+        return verificationLogRepository.findByServiceEntryId(entryId);
     }
 }

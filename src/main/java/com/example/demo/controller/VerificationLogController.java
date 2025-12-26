@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/verification-logs")
 @Tag(name = "Verification Log Controller")
@@ -20,5 +22,15 @@ public class VerificationLogController {
     @PostMapping
     public ResponseEntity<VerificationLog> create(@RequestBody VerificationLog log) {
         return ResponseEntity.ok(verificationLogService.createLog(log));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VerificationLog> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(verificationLogService.getById(id));
+    }
+
+    @GetMapping("/entry/{entryId}")
+    public ResponseEntity<List<VerificationLog>> getByEntry(@PathVariable Long entryId) {
+        return ResponseEntity.ok(verificationLogService.getByEntry(entryId));
     }
 }
