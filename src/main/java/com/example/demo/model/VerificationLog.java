@@ -14,14 +14,11 @@ public class VerificationLog {
     @ManyToOne
     private ServiceEntry serviceEntry;
 
-    private LocalDateTime verifiedAt;
+    private LocalDateTime verifiedAt = LocalDateTime.now();
+    private Boolean verifiedBySystem = true;
+    private String notes;
 
-    // Getters & Setters
-    public Long getId() { return id; }
-    public ServiceEntry getServiceEntry() { return serviceEntry; }
-    public LocalDateTime getVerifiedAt() { return verifiedAt; }
+    public VerificationLog() {}
 
-    public void setId(Long id) { this.id = id; }
-    public void setServiceEntry(ServiceEntry serviceEntry) { this.serviceEntry = serviceEntry; }
-    public void setVerifiedAt(LocalDateTime verifiedAt) { this.verifiedAt = verifiedAt; }
+    // getters & setters
 }
