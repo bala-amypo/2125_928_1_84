@@ -27,7 +27,6 @@ package com.example.demo.controller;
 import com.example.demo.model.Garage;
 import com.example.demo.service.GarageService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
