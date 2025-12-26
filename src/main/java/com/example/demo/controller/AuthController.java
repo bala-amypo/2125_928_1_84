@@ -1,3 +1,18 @@
+package com.example.demo.controller;
+
+import com.example.demo.model.User;
+import com.example.demo.payload.AuthRequest;
+import com.example.demo.service.UserService;
+import com.example.demo.security.JwtTokenProvider;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.Map;
+import java.util.HashMap;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -13,28 +28,15 @@ public class AuthController {
 
     @PostMapping("/register")
     public User register(@RequestBody User user) {
-        return userService.register(user);
+        return userService.saveUser(user);
     }
 
     @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody AuthRequest request) {
+    public Map<String, String> login(@RequestBody AuthRequest request) {
+        String token = jwtTokenProvider.generateToken(request.getUsername());
 
-        User user = userService.login(
-                request.getEmail(),
-                request.getPassword()
-        );
-
-        String token = jwtTokenProvider.generateToken(
-                user.getEmail(),
-                user.getRole(),
-                user.getId()
-        );
-
-        Map<String, Object> response = new HashMap<>();
+        Map<String, String> response = new HashMap<>();
         response.put("token", token);
-        response.put("userId", user.getId());
-        response.put("email", user.getEmail());
-        response.put("role", user.getRole());
 
         return response;
     }
