@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -24,9 +25,8 @@ public class JwtTokenProvider {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
-    // ✅ THIS METHOD MATCHES YOUR CONTROLLER
+    // ✅ CREATE TOKEN
     public String generateToken(String email, String role, Long userId) {
-
         return Jwts.builder()
                 .setSubject(email)
                 .claim("role", role)
@@ -37,6 +37,20 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    // ✅ VALIDATE TOKEN (THIS FIXES YOUR ERROR)
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey())
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException ex) {
+            return false;
+        }
+    }
+
+    // ✅ READ CLAIMS
     public Claims getClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
