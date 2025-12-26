@@ -69,6 +69,35 @@
 // }
 
 
+// package com.example.demo.model;
+
+// import jakarta.persistence.*;
+// import lombok.Data;
+// import java.time.LocalDate;
+
+// @Entity
+// @Data
+// public class ServiceEntry {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+    
+//     @ManyToOne
+//     private Vehicle vehicle;
+    
+//     @ManyToOne
+//     private Garage garage;
+    
+//     private int odometerReading;
+//     private LocalDate serviceDate;
+//     private String description;
+
+//     public void setId(long id) {
+//         this.id = id;
+//     }
+// }
+
+
 package com.example.demo.model;
 
 import jakarta.persistence.*;
@@ -88,11 +117,9 @@ public class ServiceEntry {
     @ManyToOne
     private Garage garage;
     
-    private int odometerReading;
+    private Integer odometerReading;
     private LocalDate serviceDate;
     private String description;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 }

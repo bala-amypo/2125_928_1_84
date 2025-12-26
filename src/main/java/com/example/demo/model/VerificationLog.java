@@ -60,3 +60,26 @@
 //         this.verifiedAt = verifiedAt;
 //     }
 // }
+
+
+package com.example.demo.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import java.time.LocalDateTime;
+
+@Entity
+@Data
+public class VerificationLog {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @ManyToOne
+    private ServiceEntry serviceEntry; // Fixes getServiceEntry() and setServiceEntry() errors
+    
+    private LocalDateTime verifiedAt;
+
+    public void setId(long id) { this.id = id; }
+    public void setVerifiedAt(LocalDateTime verifiedAt) { this.verifiedAt = verifiedAt; }
+}
