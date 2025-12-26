@@ -1,19 +1,18 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.ServiceEntry;
+import com.example.demo.model.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface ServiceEntryRepository extends JpaRepository<ServiceEntry, Long> {
+    
+    // Fixes the error in ServiceEntryServiceImpl:[49,17]
+    Optional<ServiceEntry> findTopByVehicleOrderByOdometerReadingDesc(Vehicle vehicle);
+    
+    // Fixes the error in ServiceEntryServiceImpl:[79,38]
+    List<ServiceEntry> findByVehicleId(Long vehicleId);
 
-    // Fixes findByGarageAndMinOdometer error
-    @Query("SELECT s FROM ServiceEntry s WHERE s.garage.id = :garageId AND s.odometerReading >= :minOdometer")
-    List<ServiceEntry> findByGarageAndMinOdometer(@Param("garageId") long garageId, @Param("minOdometer") int minOdometer);
-
-    // Fixes findByVehicleAndDateRange error
-    @Query("SELECT s FROM ServiceEntry s WHERE s.vehicle.id = :vehicleId AND s.serviceDate BETWEEN :startDate AND :endDate")
-    List<ServiceEntry> findByVehicleAndDateRange(@Param("vehicleId") long vehicleId, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    // Keep the other custom queries from the previous step if they are used in tests
 }
