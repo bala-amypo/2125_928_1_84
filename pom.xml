@@ -26,10 +26,10 @@
         <java.version>17</java.version>
     </properties>
 
-    <!-- Dependencies -->
+    <!-- ================= DEPENDENCIES ================= -->
     <dependencies>
 
-        <!-- Spring Web (Controllers + Servlet support) -->
+        <!-- Spring Web (REST + Servlet) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -41,10 +41,10 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- H2 Database (runtime) -->
+        <!-- MySQL Driver -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
@@ -54,7 +54,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- JWT (jjwt) -->
+        <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -80,14 +80,14 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!-- Lombok (optional, compile-time only) -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- ================= TEST DEPENDENCIES ================= -->
+        <!-- ================= TEST ================= -->
 
         <!-- TestNG -->
         <dependency>
@@ -97,7 +97,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Boot Test (JUnit excluded because we use TestNG) -->
+        <!-- Spring Boot Test (JUnit excluded) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -119,7 +119,7 @@
 
     </dependencies>
 
-    <!-- Build Configuration -->
+    <!-- ================= BUILD ================= -->
     <build>
         <plugins>
 
@@ -137,13 +137,12 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire Plugin for TestNG -->
+            <!-- Surefire Plugin (TestNG) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
                     <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
