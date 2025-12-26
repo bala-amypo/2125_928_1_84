@@ -1,12 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
 import com.example.demo.model.User;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -23,18 +22,24 @@ public class AuthController {
 
     // ✅ REGISTER
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return userService.register(user);   // ✅ FIX HERE
+    public User register(@RequestBody AuthRequest request) {
+
+        User user = new User();
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setRole(request.getRole());
+
+        return userService.register(user);
     }
 
     // ✅ LOGIN
     @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody Map<String, String> request) {
+    public AuthResponse login(@RequestBody AuthRequest request) {
 
-        String email = request.get("email");
-        String password = request.get("password");
-
-        User user = userService.login(email, password);
+        User user = userService.login(
+                request.getEmail(),
+                request.getPassword()
+        );
 
         String token = jwtTokenProvider.generateToken(
                 user.getEmail(),
@@ -42,12 +47,11 @@ public class AuthController {
                 user.getId()
         );
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("token", token);
-        response.put("userId", user.getId());
-        response.put("email", user.getEmail());
-        response.put("role", user.getRole());
-
-        return response;
+        return new AuthResponse(
+                token,
+                user.getId(),
+                user.getEmail(),
+                user.getRole()
+        );
     }
 }
