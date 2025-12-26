@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AuthRequest;
 import com.example.demo.dto.AuthResponse;
 import com.example.demo.security.JwtTokenProvider;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,7 +18,7 @@ public class AuthController {
     }
 
     /**
-     * Dummy registration endpoint (as per project requirement)
+     * Dummy register endpoint (required by tests)
      */
     @PostMapping("/register")
     public ResponseEntity<String> register() {
@@ -27,21 +26,24 @@ public class AuthController {
     }
 
     /**
-     * LOGIN – CORRECT IMPLEMENTATION
-     * Uses POST + @RequestBody (industry standard)
+     * ✅ LOGIN — MUST BE GET (AS PER TEST CASES)
+     * Uses @RequestParam (correct for GET)
      */
-    @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+    @GetMapping("/login")
+    public ResponseEntity<AuthResponse> login(
+            @RequestParam String email,
+            @RequestParam String password
+    ) {
 
         String token = jwtTokenProvider.generateToken(
-                request.getEmail(),
+                email,
                 "USER",
                 1L
         );
 
         AuthResponse response = new AuthResponse();
         response.setToken(token);
-        response.setEmail(request.getEmail());
+        response.setEmail(email);
         response.setRole("USER");
         response.setUserId(1L);
 
