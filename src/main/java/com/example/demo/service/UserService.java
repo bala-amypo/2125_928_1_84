@@ -1,10 +1,21 @@
 package com.example.demo.service;
 
 import com.example.demo.model.User;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
+@Service
+public class UserService {
 
-    User register(User user);
+    // Simple save method (for testing & JWT flow)
+    public User saveUser(User user) {
+        // In real project → save to DB
+        return user;
+    }
 
-    User login(String email, String password);
+    public User findByUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword("dummy-password");
+        return user;
+    }
 }
