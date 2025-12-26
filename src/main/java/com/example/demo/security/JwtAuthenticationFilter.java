@@ -22,22 +22,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return path.startsWith("/auth")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs")
+                || path.equals("/health");
+    }
+
+    @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
-
-        String path = request.getRequestURI();
-
-        // ✅ SKIP JWT CHECK FOR AUTH & SWAGGER
-        if (path.startsWith("/auth")
-                || path.startsWith("/swagger-ui")
-                || path.startsWith("/v3/api-docs")
-                || path.equals("/health")) {
-
-            filterChain.doFilter(request, response);
-            return;
-        }
 
         String header = request.getHeader("Authorization");
 
@@ -51,18 +48,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String email = claims.getSubject();
                 String role = claims.get("role", String.class);
 
-                UsernamePasswordAuthenticationToken authentication =
+                UsernamePasswordAuthenticationToken auth =
                         new UsernamePasswordAuthenticationToken(
                                 email,
                                 null,
                                 List.of(() -> "ROLE_" + role)
                         );
 
-                authentication.setDetails(
+                auth.setDetails(
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }
 
