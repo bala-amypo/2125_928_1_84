@@ -50,8 +50,7 @@ public class SecurityConfig {
                             "/v3/api-docs/**",
                             "/health"
                     ).permitAll()
-                    .requestMatchers("/api/**").authenticated()
-                    .anyRequest().permitAll()
+                    .requestMatchers("/auth/**").permitAll()
             )
 
             // JWT filter before UsernamePasswordAuthenticationFilter
