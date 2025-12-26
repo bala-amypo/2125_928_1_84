@@ -8,5 +8,9 @@ public interface ServiceEntryService {
 
     ServiceEntry createServiceEntry(ServiceEntry entry);
 
+    ServiceEntry getById(Long id);
+
     List<ServiceEntry> getEntriesForVehicle(Long vehicleId);
+
+    List<ServiceEntry> getEntriesForGarage(Long garageId);
 }

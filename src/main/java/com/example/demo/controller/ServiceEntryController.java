@@ -24,8 +24,18 @@ public class ServiceEntryController {
         return ResponseEntity.ok(serviceEntryService.createServiceEntry(entry));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ServiceEntry> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(serviceEntryService.getById(id));
+    }
+
     @GetMapping("/vehicle/{vehicleId}")
     public ResponseEntity<List<ServiceEntry>> getByVehicle(@PathVariable Long vehicleId) {
         return ResponseEntity.ok(serviceEntryService.getEntriesForVehicle(vehicleId));
+    }
+
+    @GetMapping("/garage/{garageId}")
+    public ResponseEntity<List<ServiceEntry>> getByGarage(@PathVariable Long garageId) {
+        return ResponseEntity.ok(serviceEntryService.getEntriesForGarage(garageId));
     }
 }
