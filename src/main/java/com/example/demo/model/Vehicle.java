@@ -26,6 +26,10 @@ public class Vehicle {
     public Boolean getActive() { return active; }
     public Long getOwnerId() { return ownerId; }
 
+    public void setId(Long id) { this.id = id; }
     public void setVin(String vin) { this.vin = vin; }
+    public void setMake(String make) { this.make = make; }
+    public void setModel(String model) { this.model = model; }
+    public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
     public void setActive(Boolean active) { this.active = active; }
 }
