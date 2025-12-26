@@ -5,13 +5,10 @@ import com.example.demo.payload.AuthRequest;
 import com.example.demo.service.UserService;
 import com.example.demo.security.JwtTokenProvider;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -37,6 +34,7 @@ public class AuthController {
 
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
+        response.put("username", request.getUsername());
 
         return response;
     }
