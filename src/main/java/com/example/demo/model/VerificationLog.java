@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "verification_logs")
 public class VerificationLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @ManyToOne
@@ -17,8 +16,4 @@ public class VerificationLog {
     private LocalDateTime verifiedAt = LocalDateTime.now();
     private Boolean verifiedBySystem = true;
     private String notes;
-
-    public VerificationLog() {}
-
-    // getters & setters
 }
