@@ -38,25 +38,25 @@
 //     public void setNotes(String notes) { this.notes = notes; }
 // }
 
-package com.example.demo.model;
+// package com.example.demo.model;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import java.time.LocalDateTime;
+// import jakarta.persistence.*;
+// import lombok.Data;
+// import java.time.LocalDateTime;
 
-@Entity
-@Data
-public class VerificationLog {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDateTime verifiedAt;
+// @Entity
+// @Data
+// public class VerificationLog {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+//     private LocalDateTime verifiedAt;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+//     public void setId(long id) {
+//         this.id = id;
+//     }
 
-    public void setVerifiedAt(LocalDateTime verifiedAt) {
-        this.verifiedAt = verifiedAt;
-    }
-}
+//     public void setVerifiedAt(LocalDateTime verifiedAt) {
+//         this.verifiedAt = verifiedAt;
+//     }
+// }

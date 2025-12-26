@@ -61,6 +61,27 @@
 //     public void setActive(Boolean active) { this.active = active; }
 // }
 
+// package com.example.demo.model;
+
+// import jakarta.persistence.*;
+// import lombok.Data;
+
+// @Entity
+// @Data
+// public class Vehicle {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+//     private String make;
+//     private String model;
+//     private String licensePlate;
+
+//     // The test requires this specifically
+//     public void setId(long id) {
+//         this.id = id;
+//     }
+// }
+
 package com.example.demo.model;
 
 import jakarta.persistence.*;
@@ -75,9 +96,8 @@ public class Vehicle {
     private String make;
     private String model;
     private String licensePlate;
+    private String vin;       // Fixes getVin() error
+    private Boolean active;   // Fixes getActive() and setActive() errors
 
-    // The test requires this specifically
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 }

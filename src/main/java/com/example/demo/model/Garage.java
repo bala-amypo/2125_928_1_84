@@ -47,6 +47,27 @@
 //     public void setActive(Boolean active) { this.active = active; }
 // }
 
+// package com.example.demo.model;
+
+// import jakarta.persistence.*;
+// import lombok.Data;
+
+// @Entity
+// @Data
+// public class Garage {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+//     private String name;
+//     private String location;
+
+//     public void setId(long id) {
+//         this.id = id;
+//     }
+// }
+
+
+
 package com.example.demo.model;
 
 import jakarta.persistence.*;
@@ -58,10 +79,10 @@ public class Garage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String location;
+    private String garageName;    // Fixes getGarageName() error
+    private String address;       // Fixes getAddress() error
+    private String contactNumber; // Fixes getContactNumber() error
+    private Boolean active;       // Fixes getActive() and setActive() errors
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 }
