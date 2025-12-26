@@ -15,11 +15,10 @@ public interface ServiceEntryRepository extends JpaRepository<ServiceEntry, Long
 
     List<ServiceEntry> findByVehicleId(Long vehicleId);
 
-    // ✅ REQUIRED BY TEST (method name must match exactly)
+   
     @Query("select s from ServiceEntry s where s.garage.id = :garageId and s.odometerReading > :minOdometer")
     List<ServiceEntry> findByGarageAndMinOdometer(Long garageId, int minOdometer);
 
-    // Used by Swagger optional APIs
     List<ServiceEntry> findByGarageId(Long garageId);
 
     @Query("select s from ServiceEntry s where s.vehicle.id = :vehicleId and s.serviceDate between :from and :to")
